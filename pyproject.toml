@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sparkit-mcp"
+version = "0.1.0"
+description = "MCP server for SPARKIT — call the scientific research agent from Claude Desktop, Cursor, and other MCP clients."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "SPARKIT", email = "info@sparkit.science" }]
+keywords = ["mcp", "sparkit", "research", "science", "agent", "anthropic"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "mcp>=1.0",
+    "httpx>=0.27",
+    "pydantic>=2.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+    "respx>=0.21",
+]
+
+[project.scripts]
+sparkit-mcp = "sparkit_mcp.server:main"
+
+[project.urls]
+Homepage = "https://sparkit.science"
+Repository = "https://github.com/SPARKIT-science/sparkit-mcp"
+Issues = "https://github.com/SPARKIT-science/sparkit-mcp/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sparkit_mcp*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
